@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "975616977923",
+    "firebase_url": "https://individualroyer-default-rtdb.firebaseio.com",
+    "project_id": "individualroyer",
+    "storage_bucket": "individualroyer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:975616977923:android:164ede6da79e674d1e7236",
+        "android_client_info": {
+          "package_name": "pe.edu.pucp.individualroyeryangali"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "975616977923-rte38qinhpuq2iv7apboie6ih802m71f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pe.edu.pucp.individualroyeryangali",
+            "certificate_hash": "9a3e267182f8a85e43268eac0e5eceb2562bf424"
+          }
+        },
+        {
+          "client_id": "975616977923-bhiovcsbl10n4oqne12cmgf28m6q2ut9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-AUiYrvPFGuWGOrv7MUuznFczQsx3K9s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "975616977923-bhiovcsbl10n4oqne12cmgf28m6q2ut9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
