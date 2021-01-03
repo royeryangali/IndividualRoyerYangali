@@ -9,6 +9,34 @@ public class Caso implements Serializable {
     private Date fechaFinalizado;
     private String nombreFoto;
     private String caracteristica;
+    private Double latitud;
+    private Double longitud;
+    private String direccionGPS;
+
+    public Double getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(Double latitud) {
+        this.latitud = latitud;
+    }
+
+    public Double getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(Double longitud) {
+        this.longitud = longitud;
+    }
+
+    public String getDireccionGPS() {
+        return direccionGPS;
+    }
+
+    public void setDireccionGPS(String direccionGPS) {
+        this.direccionGPS = direccionGPS;
+    }
+
     private Usuario usuarioQueRegistra;
 
     public String getPkCaso() {

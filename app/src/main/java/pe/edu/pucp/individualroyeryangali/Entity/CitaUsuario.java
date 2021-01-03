@@ -9,6 +9,26 @@ public class CitaUsuario {
     private int año;
     private int hora;
     private Usuario doctor;
+    private String estado;
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    private String motivo;
+
+    public String getMotivo() {
+        return motivo;
+    }
+
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
+    }
+
     private String pkCita;
 
     public Usuario getUsuario() {
