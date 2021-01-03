@@ -104,12 +104,34 @@ public class Registro extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
                                 Log.d("infoApp", "User profile doctor updated.");
+                                int resultadoDoctor = cadena.indexOf("DOC-");
+                                if (resultadoDoctor != -1) {
+                                    user.setCodigoUsuario(codigo.getText().toString());
+                                    if (firebaseUser.getDisplayName() != null) {
+                                        user.setNombreUsuario(firebaseUser.getDisplayName());
+                                    }
+                                    user.setPrimaryKey(firebaseUser.getUid());
+                                    databaseReference.child("users/" + firebaseUser.getUid()).setValue(user)
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Log.d("infoApp", "GUARDADO EXITOSO EN TU DATABASE" + firebaseUser.getDisplayName());
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    e.printStackTrace();
+                                                }
+                                            });
+                                } else {
+                                    Toast.makeText(Registro.this, "Por favor ingrese un código válido de Doctor.", Toast.LENGTH_SHORT).show();
+                                }
+                                finish();
                             }
                         }
                     });
                 }
-
-
             } else {
                 int resultadoDoctor = cadena.indexOf("DOC-");
                 if (resultadoDoctor != -1) {
@@ -135,7 +157,6 @@ public class Registro extends AppCompatActivity {
                     Toast.makeText(Registro.this, "Por favor ingrese un código válido de Doctor.", Toast.LENGTH_SHORT).show();
                 }
             }
-
         } else if (user.getRol().equalsIgnoreCase("Enfermero")) {
             if (firebaseUser.getDisplayName() == null) {
                 if (editTextinvisible.getVisibility() != View.VISIBLE) {
@@ -161,11 +182,36 @@ public class Registro extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
                                 Log.d("infoApp", "User profile enfermero updated.");
+                                int resultadoEnfermero = cadena.indexOf("ENF-");
+                                if (resultadoEnfermero != -1) {
+                                    user.setCodigoUsuario(codigo.getText().toString());
+                                    Log.d("infoApp", "1111" + user.getNombreUsuario());
+                                    if (firebaseUser.getDisplayName() != null) {
+                                        user.setNombreUsuario(firebaseUser.getDisplayName());
+                                        Log.d("infoApp", "1111" + firebaseUser.getDisplayName());
+                                    }
+                                    user.setPrimaryKey(firebaseUser.getUid());
+                                    databaseReference.child("users/" + firebaseUser.getUid()).setValue(user)
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Log.d("infoApp", "GUARDADO EXITOSO EN TU DATABASE" + firebaseUser.getDisplayName());
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    e.printStackTrace();
+                                                }
+                                            });
+                                } else {
+                                    Toast.makeText(Registro.this, "Por favor ingrese un código válido de Enfermero.", Toast.LENGTH_SHORT).show();
+                                }
                             }
+                            finish();
                         }
                     });
                 }
-
             } else {
                 int resultadoEnfermero = cadena.indexOf("ENF-");
                 if (resultadoEnfermero != -1) {
@@ -193,7 +239,6 @@ public class Registro extends AppCompatActivity {
                     Toast.makeText(Registro.this, "Por favor ingrese un código válido de Enfermero.", Toast.LENGTH_SHORT).show();
                 }
             }
-
         } else if (user.getRol().equalsIgnoreCase("Paciente")) {
             if (firebaseUser.getDisplayName() == null) {
                 if(editTextinvisible.getVisibility()!=View.VISIBLE){
@@ -219,12 +264,29 @@ public class Registro extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
                                 Log.d("infoApp", "User profile paciente updated.");
+                                user.setCodigoUsuario(codigo.getText().toString());
+                                if (firebaseUser.getDisplayName() != null) {
+                                    user.setNombreUsuario(firebaseUser.getDisplayName());
+                                }
+                                user.setPrimaryKey(firebaseUser.getUid());
+                                databaseReference.child("users/" + firebaseUser.getUid()).setValue(user)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Log.d("infoApp", "GUARDADO EXITOSO EN TU DATABASE" + firebaseUser.getDisplayName());
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                        });
                             }
+                            finish();
                         }
                     });
                 }
-
-
             } else {
                 user.setCodigoUsuario(codigo.getText().toString());
                 if (firebaseUser.getDisplayName() != null) {
@@ -245,7 +307,6 @@ public class Registro extends AppCompatActivity {
                             }
                         });
             }
-
         } else {
             Toast.makeText(Registro.this, "Por favor ingrese un código válido.", Toast.LENGTH_SHORT).show(); //FORMATO DE UN TOAST QUE ES COMO UN POP UP
         }
