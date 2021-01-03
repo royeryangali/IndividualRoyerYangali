@@ -11,7 +11,7 @@ public class PagPrincipalEnfermero extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pag_principal_enfermero2);
+        setContentView(R.layout.activity_pag_principal_enfermero);
         setTitle("Página principal Enfermero");
 
     }

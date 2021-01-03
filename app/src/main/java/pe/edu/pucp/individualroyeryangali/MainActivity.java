@@ -117,18 +117,18 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("infoApp", "ENCONTRADO");
                     if (user != null) {
                         if (user.getRol().equalsIgnoreCase("Doctor")) {
-                            Toast.makeText(MainActivity.this, "Bienvenido doctor " + firebaseUser.getDisplayName(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Bienvenido doctor " + user.getNombreUsuario(), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(MainActivity.this, PagPrincipalDoctor.class);
                             startActivity(intent);
                             finish();
                         }else if(user.getRol().equalsIgnoreCase("Enfermero")){
-                            Toast.makeText(MainActivity.this, "Bienvenido enfermero " + firebaseUser.getDisplayName(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Bienvenido enfermero " + user.getNombreUsuario(), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(MainActivity.this, PagPrincipalEnfermero.class);
                             startActivity(intent);
                             finish();
                         }
                         else if(user.getRol().equalsIgnoreCase("Paciente")){
-                            Toast.makeText(MainActivity.this, "Bienvenido paciente " + firebaseUser.getDisplayName(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Bienvenido paciente " + user.getNombreUsuario(), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(MainActivity.this, PagPrincipalPaciente.class);
                             startActivity(intent);
                             finish();
