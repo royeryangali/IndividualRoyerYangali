@@ -76,6 +76,7 @@ public class Registro extends AppCompatActivity {
             if(resultadoDoctor!=-1){
                 user.setCodigoUsuario(codigo.getText().toString());
                 user.setNombreUsuario(firebaseUser.getDisplayName());
+                user.setPrimaryKey(firebaseUser.getUid());
 
                 databaseReference.child("users/"+firebaseUser.getUid()).setValue(user)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -98,7 +99,7 @@ public class Registro extends AppCompatActivity {
             if(resultadoEnfermero!=-1){
                 user.setCodigoUsuario(codigo.getText().toString());
                 user.setNombreUsuario(firebaseUser.getDisplayName());
-
+                user.setPrimaryKey(firebaseUser.getUid());
                 databaseReference.child("users/"+firebaseUser.getUid()).setValue(user)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
@@ -118,7 +119,7 @@ public class Registro extends AppCompatActivity {
         }else if (user.getRol().equalsIgnoreCase("Paciente")){
             user.setCodigoUsuario(codigo.getText().toString());
             user.setNombreUsuario(firebaseUser.getDisplayName());
-
+            user.setPrimaryKey(firebaseUser.getUid());
             databaseReference.child("users/"+firebaseUser.getUid()).setValue(user)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override

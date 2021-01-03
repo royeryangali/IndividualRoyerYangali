@@ -10,8 +10,6 @@ public class CitaUsuario {
     private int hora;
     private Usuario doctor;
     private String pkCita;
-    private String direccionGPS;
-    private String direccionUsuario;
 
     public Usuario getUsuario() {
         return usuario;
@@ -69,19 +67,4 @@ public class CitaUsuario {
         this.pkCita = pkCita;
     }
 
-    public String getDireccionGPS() {
-        return direccionGPS;
-    }
-
-    public void setDireccionGPS(String direccionGPS) {
-        this.direccionGPS = direccionGPS;
-    }
-
-    public String getDireccionUsuario() {
-        return direccionUsuario;
-    }
-
-    public void setDireccionUsuario(String direccionUsuario) {
-        this.direccionUsuario = direccionUsuario;
-    }
 }

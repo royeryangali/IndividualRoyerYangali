@@ -82,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void validarUsuario() {
-
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.setLanguageCode("es-419");
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -104,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-
     }
 
     public void validarRegistro() {
@@ -137,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 } else {
-                    Log.d("infoApp", "BÚSQUEDA DE USUARIO FALLIDA 2222222222");
+                    Log.d("infoApp", "BÚSQUEDA DE USUARIO FALLIDA.");
                     Intent intent = new Intent(MainActivity.this, Registro.class);
                     startActivity(intent);
                     finish();
