@@ -24,12 +24,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import pe.edu.pucp.individualroyeryangali.Enfermero.PagPrincipalEnfermero;
 import pe.edu.pucp.individualroyeryangali.Entity.Usuario;
-import pe.edu.pucp.individualroyeryangali.Medico.PagPrincipalMedico;
+import pe.edu.pucp.individualroyeryangali.Medico.PagPrincipalDoctor;
 import pe.edu.pucp.individualroyeryangali.Paciente.PagPrincipalPaciente;
 
 public class MainActivity extends AppCompatActivity {
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
     public void validarRegistro() {
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        Log.d("JULIO", firebaseUser.getUid());
+        Log.d("infoApp", firebaseUser.getUid());
         databaseReference.child("users/" + firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -118,16 +118,22 @@ public class MainActivity extends AppCompatActivity {
                     Usuario user = snapshot.getValue(Usuario.class);
                     Log.d("infoApp", "ENCONTRADO");
                     if (user != null) {
-                        if (user.getTipo().equalsIgnoreCase("Medico")) {
-                            Intent intent = new Intent(MainActivity.this, PagPrincipalMedico.class);
+                        if (user.getRol().equalsIgnoreCase("Doctor")) {
+                            Toast.makeText(MainActivity.this, "Bienvenido doctor " + firebaseUser.getDisplayName(), Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(MainActivity.this, PagPrincipalDoctor.class);
                             startActivity(intent);
                             finish();
-                            Toast.makeText(MainActivity.this, "Bienvenido médico: " + firebaseUser.getDisplayName(), Toast.LENGTH_SHORT).show();
-                        } else {
+                        }else if(user.getRol().equalsIgnoreCase("Enfermero")){
+                            Toast.makeText(MainActivity.this, "Bienvenido enfermero " + firebaseUser.getDisplayName(), Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(MainActivity.this, PagPrincipalEnfermero.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                        else if(user.getRol().equalsIgnoreCase("Paciente")){
+                            Toast.makeText(MainActivity.this, "Bienvenido paciente " + firebaseUser.getDisplayName(), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(MainActivity.this, PagPrincipalPaciente.class);
                             startActivity(intent);
                             finish();
-                            Toast.makeText(MainActivity.this, "Bienvenido paciente: " + firebaseUser.getDisplayName(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 } else {
