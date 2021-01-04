@@ -3,15 +3,25 @@ package pe.edu.pucp.individualroyeryangali.Entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Caso implements Serializable {
+public class CasoCovid implements Serializable {
     private String pkCaso;
-    private Date fechaRegistro;
-    private Date fechaFinalizado;
+    private String fechaRegistro;
+    private String fechaFinalizado;
     private String nombreFoto;
-    private String caracteristica;
+    private String sintomas;
     private Double latitud;
     private Double longitud;
     private String direccionGPS;
+    private String zonaLimena;
+    private Usuario usuarioQueRegistra;
+
+    public String getZonaLimena() {
+        return zonaLimena;
+    }
+
+    public void setZonaLimena(String zonaLimena) {
+        this.zonaLimena = zonaLimena;
+    }
 
     public Double getLatitud() {
         return latitud;
@@ -37,7 +47,6 @@ public class Caso implements Serializable {
         this.direccionGPS = direccionGPS;
     }
 
-    private Usuario usuarioQueRegistra;
 
     public String getPkCaso() {
         return pkCaso;
@@ -47,19 +56,19 @@ public class Caso implements Serializable {
         this.pkCaso = pkCaso;
     }
 
-    public Date getFechaRegistro() {
+    public String getFechaRegistro() {
         return fechaRegistro;
     }
 
-    public void setFechaRegistro(Date fechaRegistro) {
+    public void setFechaRegistro(String fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
 
-    public Date getFechaFinalizado() {
+    public String getFechaFinalizado() {
         return fechaFinalizado;
     }
 
-    public void setFechaFinalizado(Date fechaFinalizado) {
+    public void setFechaFinalizado(String fechaFinalizado) {
         this.fechaFinalizado = fechaFinalizado;
     }
 
@@ -71,12 +80,12 @@ public class Caso implements Serializable {
         this.nombreFoto = nombreFoto;
     }
 
-    public String getCaracteristica() {
-        return caracteristica;
+    public String getSintomas() {
+        return sintomas;
     }
 
-    public void setCaracteristica(String caracteristica) {
-        this.caracteristica = caracteristica;
+    public void setSintomas(String sintomas) {
+        this.sintomas = sintomas;
     }
 
     public Usuario getUsuarioQueRegistra() {

@@ -24,7 +24,10 @@
         android:roundIcon="@mipmap/ic_lanzador_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.IndividualRoyerYangali">
-        <activity android:name=".Enfermero.PagPrincipalEnfermero"></activity>
+        <activity android:name=".Medico.EditarCasoDoctor"></activity>
+        <activity android:name=".Medico.CrearCasoDoctor" />
+        <activity android:name=".Medico.VerCitaPendienteDoctor" />
+        <activity android:name=".Enfermero.PagPrincipalEnfermero" />
         <activity android:name=".Registro" />
         <activity android:name=".Paciente.PagPrincipalPaciente" />
         <activity android:name=".Medico.PagPrincipalDoctor" />
