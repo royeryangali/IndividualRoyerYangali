@@ -66,28 +66,6 @@ public class CasosCovidAdapterEnfermero extends RecyclerView.Adapter<CasosCovidA
                 context.startActivity(intent);
             }
         });
-        holder.borrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-                databaseReference.child("CasosCovid/"+casoCovidEnfermero.getPkCaso()).setValue(null)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.d("infoApp","Se ha borrado de la databaseee");
-                                Toast.makeText(context, "Caso borrado exitosamente", Toast.LENGTH_SHORT).show();
-
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                e.printStackTrace();
-                            }
-                        });
-
-            }
-        });
 
     }
 
@@ -105,7 +83,7 @@ public class CasosCovidAdapterEnfermero extends RecyclerView.Adapter<CasosCovidA
         ImageView imagen;
         TextView nombrePaciente;
         TextView dniPaciente;
-        Button borrar;
+
         Button editar;
         public CasosCovidViewHolderEnfermero(@NonNull View itemView) {
             super(itemView);
@@ -114,7 +92,6 @@ public class CasosCovidAdapterEnfermero extends RecyclerView.Adapter<CasosCovidA
             direccionGPS = itemView.findViewById(R.id.textViewStockEnfermero);
             usuarioQueRegistra = itemView.findViewById(R.id.textViewIncluyeEnfermero);
             imagen = itemView.findViewById(R.id.imageViewDevice);
-            borrar = itemView.findViewById(R.id.buttonborrarEnfermero);
             editar = itemView.findViewById(R.id.buttonEditarEnfermero);
             estado= itemView.findViewById(R.id.textViewEstadoEnfermero);
             nombrePaciente= itemView.findViewById(R.id.textViewnombrePaciente);

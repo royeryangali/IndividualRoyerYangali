@@ -9,14 +9,6 @@
     android:layout_marginTop="10dp">
 
 
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_margin="10dp"
-        android:onClick="crearCaso"
-        android:text="Ver Vacunados" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/casosEnfermeroRv"

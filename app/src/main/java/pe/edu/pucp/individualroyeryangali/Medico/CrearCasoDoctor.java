@@ -26,16 +26,20 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCanceledListener;
@@ -59,6 +63,7 @@ import java.util.Locale;
 
 import pe.edu.pucp.individualroyeryangali.Entity.CasoCovid;
 import pe.edu.pucp.individualroyeryangali.Entity.Usuario;
+import pe.edu.pucp.individualroyeryangali.MainActivity;
 import pe.edu.pucp.individualroyeryangali.R;
 
 public class CrearCasoDoctor extends AppCompatActivity {
@@ -393,4 +398,69 @@ public class CrearCasoDoctor extends AppCompatActivity {
 
 
     }
+
+    ////para relacionar el layout de menú con esta vista
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_doctor, menu);
+        return true;
+    }
+
+    ///para linkear las opciones del menú con una acción en particular de forma centralizada ///también puede realizarse desde el primer método onCreate pero de otra manera, revisar min 01:18:43 del video zoom
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.abrirMenuDoctor:
+                View view = findViewById(R.id.abrirMenuDoctor);
+                PopupMenu popupMenu = new PopupMenu(this, view);
+                popupMenu.getMenuInflater().inflate(R.menu.menu_popup_doctor, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        switch (menuItem.getItemId()) {
+                            case R.id.verListaCasosDoctor:
+                                Intent intent = new Intent(CrearCasoDoctor.this, PagPrincipalDoctor.class);
+                                startActivity(intent);
+                                return true;
+                            case R.id.verResumenDoctor:
+
+                                return true;
+                            case R.id.crearCasoDoctor:
+                                Intent intent2 = new Intent(CrearCasoDoctor.this, CrearCasoDoctor.class);
+                                startActivity(intent2);
+                                finish();
+                                return true;
+                            case R.id.cerrarSesionDoctor:
+                                logOut();
+                                return true;
+                            default:
+                                return false;
+
+                        }
+                    }
+                });
+                popupMenu.show();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void logOut() {
+        AuthUI instance = AuthUI.getInstance();
+        instance.signOut(this).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                // Lógica de cerrao de sesión lo pongo aquí porque luego lo ecesitaremos cuando acabemos el menú de cliente y TI
+                Intent intent = new Intent(CrearCasoDoctor.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+    }
+
+
 }

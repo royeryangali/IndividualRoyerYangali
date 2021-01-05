@@ -39,7 +39,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        logOut();
 
+    }
+
+    public void logOut() {
+        AuthUI instance = AuthUI.getInstance();
+        instance.signOut(this).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+
+            }
+        });
 
     }
 
@@ -53,21 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = AuthUI.getInstance().createSignInIntentBuilder().setAuthMethodPickerLayout(authMethodPickerLayout).setAvailableProviders(proveedores).build(); ///con .setTheme() se puede cambiar el tema .setLogo(R.drawable.logoindividual)
         startActivityForResult(intent, 1);
-    }
-
-
-    public void logOut(View view) {
-        AuthUI instance = AuthUI.getInstance();
-        instance.signOut(this).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                // Lógica de cerrao de sesión lo pongo aquí porque luego lo ecesitaremos cuando acabemos el menú de cliente y TI
-                //Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                // startActivity(intent);
-                //finish();
-            }
-        });
-
     }
 
 
@@ -120,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this, PagPrincipalDoctor.class);
                             startActivity(intent);
                             finish();
-                        }else if(user.getRol().equalsIgnoreCase("Enfermero")){
+                        } else if (user.getRol().equalsIgnoreCase("Enfermero")) {
                             Toast.makeText(MainActivity.this, "Bienvenido enfermero " + user.getNombreUsuario(), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(MainActivity.this, PagPrincipalEnfermero.class);
                             startActivity(intent);

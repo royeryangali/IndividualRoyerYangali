@@ -13,6 +13,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,14 +24,20 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -46,27 +56,34 @@ import org.w3c.dom.Text;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
 
 import pe.edu.pucp.individualroyeryangali.Entity.CasoCovid;
+import pe.edu.pucp.individualroyeryangali.MainActivity;
+import pe.edu.pucp.individualroyeryangali.Medico.CrearCasoDoctor;
+import pe.edu.pucp.individualroyeryangali.Medico.PagPrincipalDoctor;
+import pe.edu.pucp.individualroyeryangali.Medico.UbicacionMapActivity;
 import pe.edu.pucp.individualroyeryangali.R;
 
 public class VacunarCasoEnfermero extends AppCompatActivity {
     CasoCovid casoCovidEnfermero = new CasoCovid();
     Uri uri = null;
     StorageReference reference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vacunar_caso_enfermero);
-        Intent intent =  getIntent();
+        Intent intent = getIntent();
         casoCovidEnfermero = (CasoCovid) intent.getSerializableExtra("casoCovidEnfermero");
 
         ImageView imagen = findViewById(R.id.imageViewFotoEditVacuna);
-        reference = FirebaseStorage.getInstance().getReference().child(casoCovidEnfermero.getPkCaso()+"/"+casoCovidEnfermero.getNombreFoto());
+        reference = FirebaseStorage.getInstance().getReference().child(casoCovidEnfermero.getPkCaso() + "/" + casoCovidEnfermero.getNombreFoto());
         Glide.with(this).load(reference).into(imagen);
 
         TextView textViewZonaVacuna = findViewById(R.id.textViewZonaEditVacuna);
-        textViewZonaVacuna.setText("Zona: "+casoCovidEnfermero.getZonaLimena());
+        textViewZonaVacuna.setText("Zona: " + casoCovidEnfermero.getZonaLimena());
 
         TextView textViewRegistradorVacuna = findViewById(R.id.textviewRegistradorEditVacuna);
         textViewRegistradorVacuna.setText(casoCovidEnfermero.getUsuarioQueRegistra().getNombreUsuario());
@@ -111,7 +128,7 @@ public class VacunarCasoEnfermero extends AppCompatActivity {
                     TextView textView = findViewById(R.id.textViewNombreFotoEdit);
                     textView.setVisibility(View.INVISIBLE);
                     Bundle bundle = data.getExtras();
-                    Bitmap bitmap =  (Bitmap) bundle.get("data");
+                    Bitmap bitmap = (Bitmap) bundle.get("data");
                     ImageView foto = findViewById(R.id.imageViewFotoEdit);
                     foto.setVisibility(View.VISIBLE);
                     foto.setImageBitmap(bitmap);
@@ -120,21 +137,21 @@ public class VacunarCasoEnfermero extends AppCompatActivity {
         }
     }
 
-    public void guardarVacuna(View view){
+    public void guardarVacuna(View view) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         casoCovidEnfermero.setEstado("Vacunado");
         final TextView textViewFoto = findViewById(R.id.textViewFoto);
 
-        databaseReference.child("CasosCovid/"+casoCovidEnfermero.getPkCaso()).setValue(casoCovidEnfermero)
+        databaseReference.child("CasosCovid/" + casoCovidEnfermero.getPkCaso()).setValue(casoCovidEnfermero)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d("infoApp","GUARDADO EXITOSO EN TU DATABASE");
+                        Log.d("infoApp", "GUARDADO EXITOSO EN TU DATABASE");
 
-                            Intent intent = new Intent(VacunarCasoEnfermero.this, PagPrincipalEnfermero.class);
-                            startActivity(intent);
-                            finish();
-                            Toast.makeText(VacunarCasoEnfermero.this, "Usuario vacunado exitosamente", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(VacunarCasoEnfermero.this, PagPrincipalEnfermero.class);
+                        startActivity(intent);
+                        finish();
+                        Toast.makeText(VacunarCasoEnfermero.this, "Usuario vacunado exitosamente", Toast.LENGTH_SHORT).show();
 
                     }
                 })
@@ -146,6 +163,7 @@ public class VacunarCasoEnfermero extends AppCompatActivity {
                 });
 
     }
+
     public void obtenerFechaVacuna(View view) {
         final Calendar c = Calendar.getInstance();
         int dia = c.get(Calendar.DAY_OF_MONTH);
@@ -169,5 +187,74 @@ public class VacunarCasoEnfermero extends AppCompatActivity {
 
     }
 
+
+////para relacionar el layout de menú con esta vista
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_enfermero, menu);
+        return true;
+    }
+
+    ///para linkear las opciones del menú con una acción en particular de forma centralizada ///también puede realizarse desde el primer método onCreate pero de otra manera, revisar min 01:18:43 del video zoom
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.abrirMenuEnfermero:
+                View view = findViewById(R.id.abrirMenuEnfermero);
+                PopupMenu popupMenu = new PopupMenu(this, view);
+                popupMenu.getMenuInflater().inflate(R.menu.menu_popup_enfermero, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        switch (menuItem.getItemId()) {
+                            case R.id.verListaCasosEnfermero:
+                                Intent intent = new Intent(VacunarCasoEnfermero.this, PagPrincipalEnfermero.class);
+                                startActivity(intent);
+                                finish();
+                                return true;
+                            case R.id.verResumenEnfermero:
+
+                                return true;
+                            case R.id.cerrarSesionEnfermero:
+                                logOut();
+                                return true;
+                            default:
+                                return false;
+
+                        }
+                    }
+                });
+                popupMenu.show();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void logOut() {
+        AuthUI instance = AuthUI.getInstance();
+        instance.signOut(this).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                // Lógica de cerrao de sesión lo pongo aquí porque luego lo ecesitaremos cuando acabemos el menú de cliente y TI
+                Intent intent = new Intent(VacunarCasoEnfermero.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+    }
+
+
+    public void mostrarInfoDeUbicacion(View view) {
+        Intent intent = new Intent(VacunarCasoEnfermero.this, UbicacionMapActivity.class);
+        intent.putExtra("latitud", casoCovidEnfermero.getLatitud());
+        intent.putExtra("longitud", casoCovidEnfermero.getLongitud());
+        startActivity(intent);
+
+
+    }
 
 }

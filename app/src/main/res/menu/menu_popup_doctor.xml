@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/verListaCasosDoctor"
+        android:title="Ver lista casos " />
+    <item
+        android:id="@+id/crearCasoDoctor"
+        android:title="Crear caso" />
+    <item
+        android:id="@+id/verResumenDoctor"
+        android:title="Ver resumen" />
+    <item
+        android:id="@+id/cerrarSesionDoctor"
+        android:title="Cerrar sesión" />
+</menu>
