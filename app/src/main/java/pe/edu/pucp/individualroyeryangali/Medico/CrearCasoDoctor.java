@@ -64,7 +64,7 @@ import pe.edu.pucp.individualroyeryangali.R;
 public class CrearCasoDoctor extends AppCompatActivity {
 
     CasoCovid casoCovid = new CasoCovid();
-    Usuario usuario;
+    Usuario usuario = new Usuario();
     Uri uri;
     String fechaParaRegistrar;
 
@@ -225,18 +225,7 @@ public class CrearCasoDoctor extends AppCompatActivity {
                             } else {
                                 subirArchivoConPutFile(casoCovid.getNombreFoto());
                             }
-                            AlertDialog.Builder alertDialog = new AlertDialog.Builder(CrearCasoDoctor.this);
-                            alertDialog.setTitle("¡Creación de caso exitoso!");
-                            alertDialog.setMessage("Podrás visualizar el estado de tus solicitudes mediante la opción 'Historial de préstamos' en el menú.");
-                            alertDialog.setPositiveButton("Entendido", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    Intent intent = new Intent(CrearCasoDoctor.this, PagPrincipalDoctor.class);
-                                    startActivity(intent);
-                                    finish();
-                                }
-                            });
-                            alertDialog.show();
+
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -281,11 +270,21 @@ public class CrearCasoDoctor extends AppCompatActivity {
             task.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(CrearCasoDoctor.this);
+                    alertDialog.setTitle("¡Creación de caso exitoso!");
+                    alertDialog.setMessage("Podrás visualizar el estado de tus solicitudes mediante la opción 'Historial de préstamos' en el menú.");
+                    alertDialog.setPositiveButton("Entendido", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent intent = new Intent(CrearCasoDoctor.this, PagPrincipalDoctor.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                    alertDialog.show();
                     Log.d("infoApp", "subida exitosa");
-                    Intent intent = new Intent(CrearCasoDoctor.this, PagPrincipalDoctor.class);
-                    startActivity(intent);
-                    finish();
-                    Toast.makeText(CrearCasoDoctor.this, "Dispositivo agregado exitósamente", Toast.LENGTH_SHORT).show();
+
+
                 }
             });
             task.addOnFailureListener(new OnFailureListener() {
