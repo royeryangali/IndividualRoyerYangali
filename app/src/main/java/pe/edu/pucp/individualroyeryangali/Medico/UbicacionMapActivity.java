@@ -20,7 +20,7 @@ public class UbicacionMapActivity extends FragmentActivity implements OnMapReady
     private GoogleMap mMap;
     private Double latitud;
     private Double longitud;
-    private String nombreUsuario;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,6 @@ public class UbicacionMapActivity extends FragmentActivity implements OnMapReady
         Intent intent = getIntent();
         latitud = intent.getDoubleExtra("latitud",0);
         longitud = intent.getDoubleExtra("longitud",0);
-        nombreUsuario = intent.getStringExtra("nombreUsuario");
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -48,6 +47,7 @@ public class UbicacionMapActivity extends FragmentActivity implements OnMapReady
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.setBuildingsEnabled(true);
         UiSettings uiSettings = mMap.getUiSettings();
         uiSettings.setCompassEnabled(true);
         uiSettings.setZoomControlsEnabled(true);
@@ -59,7 +59,8 @@ public class UbicacionMapActivity extends FragmentActivity implements OnMapReady
 
         LatLng sydney = new LatLng(latitud, longitud);
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Ubicación de "+nombreUsuario));
+        mMap.setTrafficEnabled(true);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Ubicación de paciente."));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitud,longitud),16.0f));
     }
 }

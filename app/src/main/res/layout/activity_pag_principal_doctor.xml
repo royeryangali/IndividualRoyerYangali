@@ -9,16 +9,6 @@
     android:layout_marginTop="10dp">
 
 
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:text="PAGINA PRINCIPAL DOCTOR"
-        android:textSize="24sp"
-        android:textStyle="bold|italic" />
-
     <Button
         android:id="@+id/button7"
         android:layout_width="wrap_content"
@@ -29,7 +19,7 @@
         android:text="Crear Caso" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/devicesRv"
+        android:id="@+id/casosDoctorRv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -41,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="0dp"
         android:gravity="center"
-        android:text="No hay dispositivos"
+        android:text="No hay casos."
         android:textAlignment="center"
         android:textSize="30sp"
         android:visibility="invisible" />

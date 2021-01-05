@@ -66,13 +66,12 @@ public class CrearCasoDoctor extends AppCompatActivity {
     CasoCovid casoCovid = new CasoCovid();
     Usuario usuario = new Usuario();
     Uri uri;
-    String fechaParaRegistrar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_caso_doctor);
-
+        setTitle("Registrar Caso - Doctor");
         String[] lista = {"Lima Norte", "Lima Sur", "Lima Este", "Lima Oeste", "Lima Centro"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, lista);
         Spinner spinner = findViewById(R.id.spinnerZona);
@@ -205,7 +204,10 @@ public class CrearCasoDoctor extends AppCompatActivity {
             EditText editTextTextSintomas = findViewById(R.id.editTextTextSintomas);
             casoCovid.setSintomas(editTextTextSintomas.getText().toString());
 
-
+            EditText editTextNombrePaciente = findViewById(R.id.editTextNombrePaciente);
+            casoCovid.setNombrePaciente(editTextNombrePaciente.getText().toString());
+            EditText editTextDniPaciente = findViewById(R.id.editTextDniPaciente);
+            casoCovid.setDniPaciente(Integer.valueOf(editTextDniPaciente.getText().toString()));
             EditText editTextGps = findViewById(R.id.textViewGps);
             casoCovid.setDireccionGPS(editTextGps.getText().toString());
 
@@ -326,11 +328,16 @@ public class CrearCasoDoctor extends AppCompatActivity {
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                 EditText editTextFecha = findViewById(R.id.editTextTextFecha);
                 editTextFecha.setText(i2 + "/" + (i1 + 1) + "/" + i);
-                fechaParaRegistrar = i2 + "/" + (i1 + 1) + "/" + i;
+                String diaLetra = String.valueOf(i2);
+                String mesLetra = String.valueOf(i1 + 1);
+                String anoLetra = String.valueOf(i);
+                String cadenaFecha = diaLetra + "/" + mesLetra + "/" + anoLetra;
+                casoCovid.setFechaRegistro(cadenaFecha);
             }
         }, dia, mes, ano);
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
         datePickerDialog.show();
-        casoCovid.setFechaRegistro(String.valueOf(fechaParaRegistrar));
+
     }
 
     private boolean gpsActivo() {
@@ -362,7 +369,6 @@ public class CrearCasoDoctor extends AppCompatActivity {
                             Intent intent = new Intent(CrearCasoDoctor.this, UbicacionMapActivity.class);
                             intent.putExtra("latitud", casoCovid.getLatitud());
                             intent.putExtra("longitud", casoCovid.getLongitud());
-                            intent.putExtra("nombreUsuario", firebaseUser.getDisplayName());
                             startActivity(intent);
 
                         } catch (IOException e) {

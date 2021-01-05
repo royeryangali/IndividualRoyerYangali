@@ -5,7 +5,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,7 +27,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-import pe.edu.pucp.individualroyeryangali.Entity.CitaUsuario;
 import pe.edu.pucp.individualroyeryangali.Entity.Usuario;
 
 public class Registro extends AppCompatActivity {
@@ -73,8 +71,6 @@ public class Registro extends AppCompatActivity {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
-        ArrayList<CitaUsuario> citasDelUsuario = new ArrayList<>();
-        user.setListaDeCitasUsuario(citasDelUsuario);
         EditText codigo = findViewById(R.id.editTextNumber);
         EditText editTextinvisible = findViewById(R.id.editTextTextPersonInvisible);
 

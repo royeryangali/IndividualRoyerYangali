@@ -11,8 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_gravity="center">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -24,103 +24,101 @@
                 android:layout_width="138dp"
                 android:layout_height="146dp"
                 android:layout_gravity="center"
-                android:layout_margin="2dp"
+                android:layout_margin="7dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <Button
-                android:id="@+id/buttonEditar"
+                android:id="@+id/buttonEditarEnfermero"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-               android:layout_marginTop="5dp"
-                android:text="Editar" />
+                android:layout_marginHorizontal="20dp"
+                android:text="Vacunar" />
 
             <Button
-                android:id="@+id/buttonborrar"
+                android:id="@+id/buttonborrarEnfermero"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-
+                android:layout_marginHorizontal="20dp"
                 android:text="Borrar" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="top"
+            android:orientation="vertical"
             android:layout_margin="2dp"
-            android:orientation="vertical">
+            android:layout_gravity="top"
+           >
 
             <TextView
-                android:id="@+id/textViewEstado"
+                android:id="@+id/textViewEstadoEnfermero"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
+                android:textSize="18sp"
                 android:text="TextView"
-                android:textSize="18sp" />
+                android:layout_gravity="left"/>
 
             <TextView
-                android:id="@+id/textViewTipoMode"
+                android:id="@+id/textViewTipoModeEnfermero"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_margin="5dp"
                 android:text="TextView"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:layout_gravity="left"
+                android:layout_margin="5dp"/>
 
             <TextView
-                android:id="@+id/textViewStock"
+                android:id="@+id/textViewStockEnfermero"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_margin="5dp"
+                android:textSize="18sp"
                 android:text="TextView"
-                android:textSize="18sp" />
+                android:layout_gravity="left"
+                android:layout_margin="5dp"/>
 
             <TextView
-                android:id="@+id/textViewIncluye"
+                android:id="@+id/textViewIncluyeEnfermero"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_margin="5dp"
+                android:textSize="18sp"
                 android:text="TextView"
-                android:textSize="18sp" />
+                android:layout_gravity="left"
+                android:layout_margin="5dp"/>
 
             <TextView
-                android:id="@+id/textViewCaracteristica"
+                android:id="@+id/textViewCaracteristicaEnfermero"
+                android:textSize="18sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_margin="5dp"
                 android:text="TextView"
-                android:textSize="18sp" />
-
+                android:layout_gravity="left"
+                android:layout_margin="5dp"/>
             <TextView
                 android:id="@+id/textViewnombrePaciente"
+                android:textSize="18sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_margin="5dp"
                 android:text="TextView"
-                android:textSize="18sp" />
-
+                android:layout_gravity="left"
+                android:layout_margin="5dp"/>
             <TextView
                 android:id="@+id/textViewdniPaciente"
+                android:textSize="18sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_margin="5dp"
                 android:text="TextView"
-                android:textSize="18sp" />
+                android:layout_gravity="left"
+                android:layout_margin="5dp"/>
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
 
         <TextView
             android:id="@+id/textView21"

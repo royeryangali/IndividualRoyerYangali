@@ -24,45 +24,45 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
+import pe.edu.pucp.individualroyeryangali.Enfermero.VacunarCasoEnfermero;
 import pe.edu.pucp.individualroyeryangali.Entity.CasoCovid;
-import pe.edu.pucp.individualroyeryangali.Medico.EditarCasoDoctor;
 import pe.edu.pucp.individualroyeryangali.R;
 
-public class CasosCovidAdapterDoctor extends RecyclerView.Adapter<CasosCovidAdapterDoctor.CasosCovidViewHolder>{
-    private ArrayList<CasoCovid> listaDeCasosCovid;
+public class CasosCovidAdapterEnfermero extends RecyclerView.Adapter<CasosCovidAdapterEnfermero.CasosCovidViewHolderEnfermero>{
+    private ArrayList<CasoCovid> listaDeCasosCovidEnfermero;
     private Context context;
 
-    public CasosCovidAdapterDoctor(ArrayList<CasoCovid> listaDeCasosCovid, Context context) {
-        this.listaDeCasosCovid = listaDeCasosCovid;
+    public CasosCovidAdapterEnfermero(ArrayList<CasoCovid> listaDeCasosCovidEnfermero, Context context) {
+        this.listaDeCasosCovidEnfermero = listaDeCasosCovidEnfermero;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public CasosCovidViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(context).inflate(R.layout.casos_covid_rv_doctor,parent,false);
-        CasosCovidViewHolder casosCovidViewHolder = new CasosCovidViewHolder(itemView);
-        return casosCovidViewHolder;
+    public CasosCovidViewHolderEnfermero onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(context).inflate(R.layout.casos_covid_rv_enfermero,parent,false);
+        CasosCovidViewHolderEnfermero casosCovidViewHolderEnfermero = new CasosCovidViewHolderEnfermero(itemView);
+        return casosCovidViewHolderEnfermero;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CasosCovidViewHolder holder, int position) {
-        final CasoCovid casoCovid = listaDeCasosCovid.get(position);
+    public void onBindViewHolder(@NonNull CasosCovidViewHolderEnfermero holder, int position) {
+        final CasoCovid casoCovidEnfermero = listaDeCasosCovidEnfermero.get(position);
         StorageReference reference =
-                FirebaseStorage.getInstance().getReference().child(casoCovid.getPkCaso()+"/"+casoCovid.getNombreFoto());
+                FirebaseStorage.getInstance().getReference().child(casoCovidEnfermero.getPkCaso()+"/"+casoCovidEnfermero.getNombreFoto());
         Glide.with(context).load(reference).into(holder.imagen);
-        holder.zona.setText("Zona: "+casoCovid.getZonaLimena()+" - Fecha Registro: "+casoCovid.getFechaRegistro());
-        holder.sintoma.setText("Síntomas: "+ casoCovid.getSintomas());
-        holder.direccionGPS.setText("Dirección: "+ casoCovid.getDireccionGPS());
-        holder.usuarioQueRegistra.setText("Registrado por: "+ casoCovid.getUsuarioQueRegistra().getNombreUsuario());
-        holder.estado.setText("Estado: " + casoCovid.getEstado());
-        holder.nombrePaciente.setText("Paciente: " + casoCovid.getNombrePaciente());
-        holder.dniPaciente.setText("DNI: "+casoCovid.getDniPaciente());
+        holder.zona.setText("Zona: "+casoCovidEnfermero.getZonaLimena()+" - Fecha Registro: "+casoCovidEnfermero.getFechaRegistro());
+        holder.sintoma.setText("Síntomas: "+ casoCovidEnfermero.getSintomas());
+        holder.direccionGPS.setText("Dirección: "+ casoCovidEnfermero.getDireccionGPS());
+        holder.usuarioQueRegistra.setText("Registrado por: "+ casoCovidEnfermero.getUsuarioQueRegistra().getNombreUsuario());
+        holder.estado.setText("Estado: " + casoCovidEnfermero.getEstado());
+        holder.nombrePaciente.setText("Paciente: " + casoCovidEnfermero.getNombrePaciente());
+        holder.dniPaciente.setText("DNI: "+casoCovidEnfermero.getDniPaciente());
         holder.editar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, EditarCasoDoctor.class);
-                intent.putExtra("casoCovid", casoCovid);
+                Intent intent = new Intent(context, VacunarCasoEnfermero.class);
+                intent.putExtra("casoCovidEnfermero", casoCovidEnfermero);
                 context.startActivity(intent);
             }
         });
@@ -70,7 +70,7 @@ public class CasosCovidAdapterDoctor extends RecyclerView.Adapter<CasosCovidAdap
             @Override
             public void onClick(View v) {
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-                databaseReference.child("CasosCovid/"+casoCovid.getPkCaso()).setValue(null)
+                databaseReference.child("CasosCovid/"+casoCovidEnfermero.getPkCaso()).setValue(null)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
@@ -93,30 +93,30 @@ public class CasosCovidAdapterDoctor extends RecyclerView.Adapter<CasosCovidAdap
 
     @Override
     public int getItemCount() {
-        return listaDeCasosCovid.size();
+        return listaDeCasosCovidEnfermero.size();
     }
 
-    public static  class CasosCovidViewHolder extends RecyclerView.ViewHolder{
+    public static  class CasosCovidViewHolderEnfermero extends RecyclerView.ViewHolder{
         TextView zona;
         TextView sintoma;
         TextView direccionGPS;
         TextView usuarioQueRegistra;
-        TextView nombrePaciente;
-        TextView dniPaciente;
         TextView estado;
         ImageView imagen;
+        TextView nombrePaciente;
+        TextView dniPaciente;
         Button borrar;
         Button editar;
-        public CasosCovidViewHolder(@NonNull View itemView) {
+        public CasosCovidViewHolderEnfermero(@NonNull View itemView) {
             super(itemView);
-            zona = itemView.findViewById(R.id.textViewTipoMode);
-            sintoma = itemView.findViewById(R.id.textViewCaracteristica);
-            direccionGPS = itemView.findViewById(R.id.textViewStock);
-            usuarioQueRegistra = itemView.findViewById(R.id.textViewIncluye);
+            zona = itemView.findViewById(R.id.textViewTipoModeEnfermero);
+            sintoma = itemView.findViewById(R.id.textViewCaracteristicaEnfermero);
+            direccionGPS = itemView.findViewById(R.id.textViewStockEnfermero);
+            usuarioQueRegistra = itemView.findViewById(R.id.textViewIncluyeEnfermero);
             imagen = itemView.findViewById(R.id.imageViewDevice);
-            borrar = itemView.findViewById(R.id.buttonborrar);
-            editar = itemView.findViewById(R.id.buttonEditar);
-            estado= itemView.findViewById(R.id.textViewEstado);
+            borrar = itemView.findViewById(R.id.buttonborrarEnfermero);
+            editar = itemView.findViewById(R.id.buttonEditarEnfermero);
+            estado= itemView.findViewById(R.id.textViewEstadoEnfermero);
             nombrePaciente= itemView.findViewById(R.id.textViewnombrePaciente);
             dniPaciente = itemView.findViewById(R.id.textViewdniPaciente);
         }

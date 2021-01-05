@@ -28,7 +28,7 @@ public class PagPrincipalDoctor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pag_principal_doctor);
-        setTitle("Página principal Médico");
+        setTitle("Página principal Doctor");
         listarCasos();
 
     }
@@ -64,7 +64,7 @@ public class PagPrincipalDoctor extends AppCompatActivity {
                         message.setVisibility(View.INVISIBLE);
                     }
                     CasosCovidAdapterDoctor adapter = new CasosCovidAdapterDoctor(casoCovidArrayList,PagPrincipalDoctor.this);
-                    RecyclerView recyclerView = findViewById(R.id.devicesRv);
+                    RecyclerView recyclerView = findViewById(R.id.casosDoctorRv);
                     if(recyclerView.getVisibility()==View.INVISIBLE){
                         recyclerView.setVisibility(View.VISIBLE);
                     }
@@ -73,7 +73,7 @@ public class PagPrincipalDoctor extends AppCompatActivity {
                 }else{
                     TextView message = findViewById(R.id.textViewMessageDispo);
                     message.setVisibility(View.VISIBLE);
-                    RecyclerView recyclerView = findViewById(R.id.devicesRv);
+                    RecyclerView recyclerView = findViewById(R.id.casosDoctorRv);
                     if(recyclerView.getVisibility()==View.VISIBLE){
                         recyclerView.setVisibility(View.INVISIBLE);
                     }

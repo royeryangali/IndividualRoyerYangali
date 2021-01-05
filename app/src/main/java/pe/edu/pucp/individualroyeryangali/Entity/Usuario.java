@@ -19,26 +19,15 @@ public class Usuario implements Serializable {
         this.nombreUsuario = nombreUsuario;
     }
 
-    private ArrayList<CitaUsuario> listaDeCitasUsuario;
 
     public String getCodigoUsuario() {
         return codigoUsuario;
     }
 
 
-
     public void setCodigoUsuario(String codigoUsuario) {
         this.codigoUsuario = codigoUsuario;
     }
-
-    public ArrayList<CitaUsuario> getListaDeCitasUsuario() {
-        return listaDeCitasUsuario;
-    }
-
-    public void setListaDeCitasUsuario(ArrayList<CitaUsuario> listaDeCitasUsuario) {
-        this.listaDeCitasUsuario = listaDeCitasUsuario;
-    }
-
 
     public String getRol() {
         return rol;

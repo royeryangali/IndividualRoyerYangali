@@ -30,7 +30,6 @@ import java.util.List;
 import pe.edu.pucp.individualroyeryangali.Enfermero.PagPrincipalEnfermero;
 import pe.edu.pucp.individualroyeryangali.Entity.Usuario;
 import pe.edu.pucp.individualroyeryangali.Medico.PagPrincipalDoctor;
-import pe.edu.pucp.individualroyeryangali.Paciente.PagPrincipalPaciente;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -124,12 +123,6 @@ public class MainActivity extends AppCompatActivity {
                         }else if(user.getRol().equalsIgnoreCase("Enfermero")){
                             Toast.makeText(MainActivity.this, "Bienvenido enfermero " + user.getNombreUsuario(), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(MainActivity.this, PagPrincipalEnfermero.class);
-                            startActivity(intent);
-                            finish();
-                        }
-                        else if(user.getRol().equalsIgnoreCase("Paciente")){
-                            Toast.makeText(MainActivity.this, "Bienvenido paciente " + user.getNombreUsuario(), Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(MainActivity.this, PagPrincipalPaciente.class);
                             startActivity(intent);
                             finish();
                         }

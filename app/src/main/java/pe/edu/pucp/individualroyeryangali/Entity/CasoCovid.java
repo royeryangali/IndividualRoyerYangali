@@ -15,6 +15,24 @@ public class CasoCovid implements Serializable {
     private String zonaLimena;
     private Usuario usuarioQueRegistra;
     private String estado;
+    private String nombrePaciente;
+    private int dniPaciente;
+
+    public String getNombrePaciente() {
+        return nombrePaciente;
+    }
+
+    public void setNombrePaciente(String nombrePaciente) {
+        this.nombrePaciente = nombrePaciente;
+    }
+
+    public int getDniPaciente() {
+        return dniPaciente;
+    }
+
+    public void setDniPaciente(int dniPaciente) {
+        this.dniPaciente = dniPaciente;
+    }
 
     public String getEstado() {
         return estado;
