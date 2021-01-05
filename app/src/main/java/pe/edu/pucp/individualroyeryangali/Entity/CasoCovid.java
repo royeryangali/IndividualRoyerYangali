@@ -14,6 +14,15 @@ public class CasoCovid implements Serializable {
     private String direccionGPS;
     private String zonaLimena;
     private Usuario usuarioQueRegistra;
+    private String estado;
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
     public String getZonaLimena() {
         return zonaLimena;

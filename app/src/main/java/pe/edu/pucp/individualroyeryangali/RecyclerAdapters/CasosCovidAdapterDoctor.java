@@ -55,6 +55,7 @@ public class CasosCovidAdapterDoctor extends RecyclerView.Adapter<CasosCovidAdap
         holder.sintoma.setText("Síntomas: "+ casoCovid.getSintomas());
         holder.direccionGPS.setText("Dirección: "+ casoCovid.getDireccionGPS());
         holder.usuarioQueRegistra.setText("Registrado por: "+ casoCovid.getUsuarioQueRegistra().getNombreUsuario());
+        holder.estado.setText("Estado: " + casoCovid.getEstado());
         holder.editar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,7 +68,7 @@ public class CasosCovidAdapterDoctor extends RecyclerView.Adapter<CasosCovidAdap
             @Override
             public void onClick(View v) {
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-                databaseReference.child("Dispositivos/"+casoCovid.getPkCaso()).setValue(null)
+                databaseReference.child("CasosCovid/"+casoCovid.getPkCaso()).setValue(null)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
@@ -98,6 +99,7 @@ public class CasosCovidAdapterDoctor extends RecyclerView.Adapter<CasosCovidAdap
         TextView sintoma;
         TextView direccionGPS;
         TextView usuarioQueRegistra;
+        TextView estado;
         ImageView imagen;
         Button borrar;
         Button editar;
@@ -110,6 +112,7 @@ public class CasosCovidAdapterDoctor extends RecyclerView.Adapter<CasosCovidAdap
             imagen = itemView.findViewById(R.id.imageViewDevice);
             borrar = itemView.findViewById(R.id.buttonborrar);
             editar = itemView.findViewById(R.id.buttonEditar);
+            estado= itemView.findViewById(R.id.textViewEstado);
         }
     }
 }

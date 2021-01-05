@@ -192,7 +192,7 @@ public class CrearCasoDoctor extends AppCompatActivity {
         return result;
     }
 
-    public void guardarDispositivo(View view) {
+    public void guardarCaso(View view) {
         EditText textviewGPSaValidar = findViewById(R.id.textViewGps);
         if (textviewGPSaValidar.getVisibility() == View.VISIBLE) {
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -200,7 +200,7 @@ public class CrearCasoDoctor extends AppCompatActivity {
             usuario.setNombreUsuario(firebaseUser.getDisplayName());
             usuario.setPrimaryKey(firebaseUser.getUid());
             casoCovid.setUsuarioQueRegistra(usuario);
-
+            casoCovid.setEstado("Pendiente");
 
             EditText editTextTextSintomas = findViewById(R.id.editTextTextSintomas);
             casoCovid.setSintomas(editTextTextSintomas.getText().toString());
@@ -330,7 +330,7 @@ public class CrearCasoDoctor extends AppCompatActivity {
             }
         }, dia, mes, ano);
         datePickerDialog.show();
-        casoCovid.setFechaRegistro(fechaParaRegistrar);
+        casoCovid.setFechaRegistro(String.valueOf(fechaParaRegistrar));
     }
 
     private boolean gpsActivo() {
@@ -341,6 +341,7 @@ public class CrearCasoDoctor extends AppCompatActivity {
 
     public void mostrarInfoDeUbicacion(View view) {
         if (gpsActivo()) {
+            FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
             int permission = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
             if (permission == PackageManager.PERMISSION_GRANTED) {
                 FusedLocationProviderClient location = LocationServices.getFusedLocationProviderClient(this);
@@ -358,6 +359,12 @@ public class CrearCasoDoctor extends AppCompatActivity {
                             TextView textViewGps = findViewById(R.id.textViewGps);
                             textViewGps.setText(direccion.get(0).getAddressLine(0));
                             textViewGps.setVisibility(View.VISIBLE);
+                            Intent intent = new Intent(CrearCasoDoctor.this, UbicacionMapActivity.class);
+                            intent.putExtra("latitud", casoCovid.getLatitud());
+                            intent.putExtra("longitud", casoCovid.getLongitud());
+                            intent.putExtra("nombreUsuario", firebaseUser.getDisplayName());
+                            startActivity(intent);
+
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

@@ -2,6 +2,7 @@ package pe.edu.pucp.individualroyeryangali.Medico;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -19,11 +20,16 @@ public class UbicacionMapActivity extends FragmentActivity implements OnMapReady
     private GoogleMap mMap;
     private Double latitud;
     private Double longitud;
+    private String nombreUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ubicacion_map);
+        Intent intent = getIntent();
+        latitud = intent.getDoubleExtra("latitud",0);
+        longitud = intent.getDoubleExtra("longitud",0);
+        nombreUsuario = intent.getStringExtra("nombreUsuario");
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -50,9 +56,10 @@ public class UbicacionMapActivity extends FragmentActivity implements OnMapReady
         //MarkerOptions markerOptions = new MarkerOptions();
         //markerOptions.position(new LatLng(latitud, longitud));
         // Add a marker in Sydney and move the camera
+
         LatLng sydney = new LatLng(latitud, longitud);
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Ubicación de "));
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Ubicación de "+nombreUsuario));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitud,longitud),16.0f));
     }
 }
