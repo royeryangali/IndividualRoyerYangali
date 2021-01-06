@@ -56,7 +56,6 @@ public class VerResumen extends AppCompatActivity {
                 }
 
                 if (!casoCovidArrayList.isEmpty()) {
-                    Toast.makeText(VerResumen.this, "Casos en Pie Chart", Toast.LENGTH_SHORT).show();
                     Log.d("infoApp", "total" + casoCovidArrayList.size());
                     for (CasoCovid casitoCovid : casoCovidArrayList) {
                         if (casitoCovid.getEstado().equalsIgnoreCase("Pendiente")) {

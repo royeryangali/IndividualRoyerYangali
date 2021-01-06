@@ -8,13 +8,13 @@
     tools:context=".Medico.CrearCasoDoctor">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="left"
         android:orientation="horizontal"/>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="horizontal">
@@ -29,7 +29,7 @@
 
         <Spinner
             android:id="@+id/spinnerZona"
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
            />
@@ -44,7 +44,7 @@
 
         <EditText
             android:id="@+id/editTextTextRegistrador"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="1dp"
             android:clickable="false"
@@ -58,9 +58,9 @@
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="left"
         android:orientation="horizontal">
 
         <TextView
@@ -112,7 +112,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginHorizontal="10dp"
-            android:text="Dir. GPS"
+            android:text="Dir. GPS:"
             android:textSize="18sp" />
 
         <EditText
@@ -138,7 +138,7 @@
             tools:layout_editor_absoluteY="370dp" />
         <EditText
             android:id="@+id/editTextEstado"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="1dp"
             android:clickable="false"
@@ -160,6 +160,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textSize="18sp"
             android:text="Paciente:" />
 
         <EditText
@@ -175,8 +176,9 @@
             android:id="@+id/textView15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="DNI:" />
+
+            android:text="DNI:"
+            android:textSize="18sp"/>
 
         <EditText
             android:id="@+id/editTextDniPaciente"

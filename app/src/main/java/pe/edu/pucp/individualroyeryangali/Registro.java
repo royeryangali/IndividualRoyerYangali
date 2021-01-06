@@ -38,7 +38,7 @@ public class Registro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
         TextView textViewSeñalador = findViewById(R.id.textViewSeñalador);
-        String[] lista = {"Doctor", "Enfermero", "Paciente"};
+        String[] lista = {"Doctor", "Enfermero"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, lista);
         Spinner spinner = findViewById(R.id.spinnerRol);
         spinner.setAdapter(adapter);
@@ -53,10 +53,6 @@ public class Registro extends AppCompatActivity {
                 } else if (position == 1) {
                     user.setRol("Enfermero");
                     textViewSeñalador.setText("Por favor ingrese su código de Enfermero.");
-                    textViewSeñalador.setVisibility(View.VISIBLE);
-                } else if (position == 2) {
-                    user.setRol("Paciente");
-                    textViewSeñalador.setText("Por favor ingrese su código de Paciente.");
                     textViewSeñalador.setVisibility(View.VISIBLE);
                 }
             }
@@ -155,7 +151,7 @@ public class Registro extends AppCompatActivity {
             }
         } else if (user.getRol().equalsIgnoreCase("Enfermero")) {
             if (firebaseUser.getDisplayName() == null) {
-                if (editTextinvisible.getVisibility() != View.VISIBLE) {
+                if (editTextinvisible.getVisibility()== View.INVISIBLE) {
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(Registro.this);
                     alertDialog.setTitle("El correo de registro no tiene asociado un nombre.");
                     alertDialog.setMessage("Se ha activado una casilla adicional para ingresar Nombre y Apellido. Por favor, complete los datos.");
@@ -235,76 +231,6 @@ public class Registro extends AppCompatActivity {
                     Toast.makeText(Registro.this, "Por favor ingrese un código válido de Enfermero.", Toast.LENGTH_SHORT).show();
                 }
             }
-        } else if (user.getRol().equalsIgnoreCase("Paciente")) {
-            if (firebaseUser.getDisplayName() == null) {
-                if(editTextinvisible.getVisibility()!=View.VISIBLE){
-                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(Registro.this);
-                    alertDialog.setTitle("El correo de registro no tiene asociado un nombre.");
-                    alertDialog.setMessage("Se ha activado una casilla adicional para ingresar Nombre y Apellido. Por favor, complete los datos.");
-                    alertDialog.setPositiveButton("Entendido", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                        }
-                    });
-                    alertDialog.show();
-                    TextView textViewNombreInvisible = findViewById(R.id.textViewNombreInvisible);
-                    EditText editTextInvisible = findViewById(R.id.editTextTextPersonInvisible);
-                    editTextInvisible.setVisibility(View.VISIBLE);
-                    textViewNombreInvisible.setVisibility(View.VISIBLE);
-                }else {
-                    EditText invisible2 = findViewById(R.id.editTextTextPersonInvisible);
-                    String ga = invisible2.getText().toString();
-                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(ga).build();
-                    firebaseUser.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Log.d("infoApp", "User profile paciente updated.");
-                                user.setCodigoUsuario(codigo.getText().toString());
-                                if (firebaseUser.getDisplayName() != null) {
-                                    user.setNombreUsuario(firebaseUser.getDisplayName());
-                                }
-                                user.setPrimaryKey(firebaseUser.getUid());
-                                databaseReference.child("users/" + firebaseUser.getUid()).setValue(user)
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void aVoid) {
-                                                Log.d("infoApp", "GUARDADO EXITOSO EN TU DATABASE" + firebaseUser.getDisplayName());
-                                            }
-                                        })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                e.printStackTrace();
-                                            }
-                                        });
-                            }
-                            finish();
-                        }
-                    });
-                }
-            } else {
-                user.setCodigoUsuario(codigo.getText().toString());
-                if (firebaseUser.getDisplayName() != null) {
-                    user.setNombreUsuario(firebaseUser.getDisplayName());
-                }
-                user.setPrimaryKey(firebaseUser.getUid());
-                databaseReference.child("users/" + firebaseUser.getUid()).setValue(user)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.d("infoApp", "GUARDADO EXITOSO EN TU DATABASE" + firebaseUser.getDisplayName());
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                e.printStackTrace();
-                            }
-                        });
-            }
-        } else {
-            Toast.makeText(Registro.this, "Por favor ingrese un código válido.", Toast.LENGTH_SHORT).show(); //FORMATO DE UN TOAST QUE ES COMO UN POP UP
         }
     }
 

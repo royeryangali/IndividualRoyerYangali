@@ -71,7 +71,7 @@ public class VacunarCasoEnfermero extends AppCompatActivity {
     CasoCovid casoCovidEnfermero = new CasoCovid();
     Uri uri = null;
     StorageReference reference;
-    TextView textViewCoche = findViewById(R.id.textViewCoche);
+    TextView textViewCoche ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,7 +144,7 @@ public class VacunarCasoEnfermero extends AppCompatActivity {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         casoCovidEnfermero.setEstado("Vacunado");
         final TextView textViewFoto = findViewById(R.id.textViewFoto);
-
+        textViewCoche= findViewById(R.id.textViewCoche);
         if(textViewCoche.getVisibility()==View.INVISIBLE){
             EditText editTextFecha = findViewById(R.id.editTextTextFechaVacuna);
             editTextFecha.setError("Debe seleccionar una fecha.");
@@ -183,6 +183,7 @@ public class VacunarCasoEnfermero extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                 EditText editTextFecha = findViewById(R.id.editTextTextFechaVacuna);
+                textViewCoche= findViewById(R.id.textViewCoche);
                 textViewCoche.setVisibility(View.VISIBLE);
                 editTextFecha.setText(i2 + "/" + (i1 + 1) + "/" + i);
                 String diaLetra = String.valueOf(i2);

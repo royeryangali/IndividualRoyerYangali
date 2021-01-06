@@ -322,7 +322,7 @@ public class CrearCasoDoctor extends AppCompatActivity {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(CrearCasoDoctor.this);
                     alertDialog.setTitle("¡Creación de caso exitoso!");
-                    alertDialog.setMessage("Podrás visualizar el estado de tus solicitudes mediante la opción 'Historial de préstamos' en el menú.");
+                    alertDialog.setMessage("Podrás visualizar la lista de casos registrados en la opción 'Ver lista de casos' en el menú.");
                     alertDialog.setPositiveButton("Entendido", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {

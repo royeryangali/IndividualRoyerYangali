@@ -24,19 +24,36 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="7dp"
+                    android:layout_marginLeft="25dp"
                     android:layout_marginTop="7dp"
-                    android:layout_marginRight="7dp"
+                    android:layout_marginRight="25dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/textView23"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Bienvenido a las estadísticas generales de casos de Covid. Por favor, utilice adecuadamente esta información." />
+                        android:layout_marginBottom="25dp"
+                        android:text="Bienvenido a las estadísticas generales de casos de Covid. Por favor, utilice adecuadamente esta información."
+                        android:textColor="#772929"
+                        android:textSize="18sp" />
 
                 </LinearLayout>
+                <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView25"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_margin="7dp"
+                        android:text="En esta primera gráfica se observa, del total de casos en el sistema, la proporción entre usuarios registras(no vacunados) y vacunados así como el cantidad de pacientes en cada caso."
+                        android:textColor="#020202" />
+
+            </LinearLayout>
 
 
                 <LinearLayout
@@ -50,6 +67,22 @@
                         android:layout_width="268dp"
                         android:layout_height="270dp"
                         android:visibility="visible" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView245"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_margin="7dp"
+                        android:text="En esta segunda gráfica se observa la distribución de casos (vacunados y no vacunados) distribuidos de acuerdo a la zona limeña desde la cual fueron registrados en el sistema."
+                        android:textColor="#000000" />
 
                 </LinearLayout>
 
