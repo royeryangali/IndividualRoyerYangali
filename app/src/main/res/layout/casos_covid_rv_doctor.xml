@@ -33,21 +33,32 @@
                 android:layout_marginTop="8dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
-            <Button
-                android:id="@+id/buttonEditar"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:text="Editar" />
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/buttonborrar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:text="Borrar" />
+
+                <Button
+                    android:id="@+id/buttonEditar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="2dp"
+                    android:layout_marginLeft="2dp"
+
+                    android:text="Editar" />
+
+                <Button
+                    android:id="@+id/buttonborrar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="2dp"
+                    android:layout_marginRight="2dp"
+                    android:text="Borrar" />
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
