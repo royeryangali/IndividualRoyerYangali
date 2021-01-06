@@ -36,7 +36,7 @@ public class PagPrincipalEnfermero extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pag_principal_enfermero);
-        setTitle("Página principal Enfermero");
+        setTitle("Enfermero - ReportApp");
         verCasosPendientes();
     }
 

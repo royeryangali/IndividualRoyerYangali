@@ -71,11 +71,13 @@ public class VacunarCasoEnfermero extends AppCompatActivity {
     CasoCovid casoCovidEnfermero = new CasoCovid();
     Uri uri = null;
     StorageReference reference;
+    TextView textViewCoche = findViewById(R.id.textViewCoche);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vacunar_caso_enfermero);
+        setTitle("Enfermero - ReportApp");
         Intent intent = getIntent();
         casoCovidEnfermero = (CasoCovid) intent.getSerializableExtra("casoCovidEnfermero");
 
@@ -143,25 +145,31 @@ public class VacunarCasoEnfermero extends AppCompatActivity {
         casoCovidEnfermero.setEstado("Vacunado");
         final TextView textViewFoto = findViewById(R.id.textViewFoto);
 
-        databaseReference.child("CasosCovid/" + casoCovidEnfermero.getPkCaso()).setValue(casoCovidEnfermero)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d("infoApp", "GUARDADO EXITOSO EN TU DATABASE");
+        if(textViewCoche.getVisibility()==View.INVISIBLE){
+            EditText editTextFecha = findViewById(R.id.editTextTextFechaVacuna);
+            editTextFecha.setError("Debe seleccionar una fecha.");
+        }else {
+            databaseReference.child("CasosCovid/" + casoCovidEnfermero.getPkCaso()).setValue(casoCovidEnfermero)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d("infoApp", "GUARDADO EXITOSO EN TU DATABASE");
 
-                        Intent intent = new Intent(VacunarCasoEnfermero.this, PagPrincipalEnfermero.class);
-                        startActivity(intent);
-                        finish();
-                        Toast.makeText(VacunarCasoEnfermero.this, "Usuario vacunado exitosamente", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(VacunarCasoEnfermero.this, PagPrincipalEnfermero.class);
+                            startActivity(intent);
+                            finish();
+                            Toast.makeText(VacunarCasoEnfermero.this, "Usuario vacunado exitosamente", Toast.LENGTH_SHORT).show();
 
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        e.printStackTrace();
-                    }
-                });
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            e.printStackTrace();
+                        }
+                    });
+        }
+
 
     }
 
@@ -175,6 +183,7 @@ public class VacunarCasoEnfermero extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                 EditText editTextFecha = findViewById(R.id.editTextTextFechaVacuna);
+                textViewCoche.setVisibility(View.VISIBLE);
                 editTextFecha.setText(i2 + "/" + (i1 + 1) + "/" + i);
                 String diaLetra = String.valueOf(i2);
                 String mesLetra = String.valueOf(i1 + 1);
@@ -184,6 +193,7 @@ public class VacunarCasoEnfermero extends AppCompatActivity {
             }
         }, dia, mes, ano);
         datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+
         datePickerDialog.show();
 
     }

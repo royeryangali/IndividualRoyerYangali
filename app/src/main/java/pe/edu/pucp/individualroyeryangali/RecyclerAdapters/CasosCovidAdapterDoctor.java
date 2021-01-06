@@ -51,7 +51,7 @@ public class CasosCovidAdapterDoctor extends RecyclerView.Adapter<CasosCovidAdap
         StorageReference reference =
                 FirebaseStorage.getInstance().getReference().child(casoCovid.getPkCaso()+"/"+casoCovid.getNombreFoto());
         Glide.with(context).load(reference).into(holder.imagen);
-        holder.zona.setText("Zona: "+casoCovid.getZonaLimena()+" - Fecha Registro: "+casoCovid.getFechaRegistro());
+        holder.zona.setText("Zona: "+casoCovid.getZonaLimena()+" F. Registro: "+casoCovid.getFechaRegistro());
         holder.sintoma.setText("Síntomas: "+ casoCovid.getSintomas());
         holder.direccionGPS.setText("Dirección: "+ casoCovid.getDireccionGPS());
         holder.usuarioQueRegistra.setText("Registrado por: "+ casoCovid.getUsuarioQueRegistra().getNombreUsuario());

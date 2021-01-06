@@ -4,280 +4,293 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Medico.CrearCasoDoctor" android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".Medico.CrearCasoDoctor">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/textView70"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_gravity="center"
-       >
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Zona:"
-            android:textSize="18sp"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="20dp"/>
-
-        <Spinner
-            android:id="@+id/spinnerZona"
-            android:layout_width="285dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="10dp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        >
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Registrador:"
-            android:textSize="18sp"
-            android:layout_marginHorizontal="10dp"/>
-
-        <EditText
-            android:id="@+id/editTextTextRegistrador"
-            android:layout_width="285dp"
-            android:layout_height="45dp"
-            android:clickable="false"
-            android:cursorVisible="false"
-            android:ems="10"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:hint="Campo no editable"
-            android:inputType="textPersonName"
-            android:layout_marginHorizontal="10dp"/>
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-       >
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Síntomas:"
-            android:textSize="18sp" />
-
-        <EditText
-            android:id="@+id/editTextTextSintomas"
-            android:layout_width="285dp"
-            android:layout_height="40dp"
-
-            android:ems="10"
-
-            android:gravity="start|top"
-            android:hint="Síntomas"
-            android:inputType="textMultiLine" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        >
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Fecha:"
-            android:textSize="18sp"
-            android:layout_marginHorizontal="10dp"/>
-
-        <EditText
-            android:id="@+id/editTextTextFecha"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:layout_weight="1"
-            android:ems="10"
-            android:onClick="obtenerFecha" />
-
-    </LinearLayout>
-
-    <LinearLayout
+        android:text="Registrar Caso"
+        android:textSize="24sp"
+        android:textStyle="bold|italic" />
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Paciente:" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
 
-        <EditText
-            android:id="@+id/editTextNombrePaciente"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="Nombre Paciente"
-            android:inputType="textPersonName" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
 
-        <TextView
-            android:id="@+id/textView15"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="DNI:" />
+                    android:text="Zona:"
+                    android:textSize="18sp" />
 
-        <EditText
-            android:id="@+id/editTextDniPaciente"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName"
-           android:hint="DNI paciente" />
-    </LinearLayout>
+                <Spinner
+                    android:id="@+id/spinnerZona"
+                    android:layout_width="285dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="10dp" />
+            </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:layout_margin="7dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dir. GPS"
-            android:textSize="18sp"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="10dp"/>
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Registrador:"
+                    android:textSize="18sp" />
 
-        <EditText
-            android:id="@+id/textViewGps"
-            android:layout_width="285dp"
-            android:layout_height="40dp"
-            android:clickable="false"
-            android:cursorVisible="false"
-            android:ems="10"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:hint="Pulse para obtener dirección."
-            android:inputType="number"
-            android:onClick="mostrarInfoDeUbicacion"
-            android:layout_gravity="center"/>
-    </LinearLayout>
+                <EditText
+                    android:id="@+id/editTextTextRegistrador"
+                    android:layout_width="285dp"
+                    android:layout_height="45dp"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="Campo no editable"
+                    android:inputType="textPersonName" />
+            </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="7dp"
-        android:layout_gravity="center">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
 
-        <TextView
-            android:id="@+id/textView12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Estado:"
+                android:orientation="horizontal">
 
-            android:textSize="18sp"
-            tools:layout_editor_absoluteY="370dp" />
-        <EditText
-            android:id="@+id/editTextEstado"
-            android:layout_width="285dp"
-            android:layout_height="45dp"
-            android:clickable="false"
-            android:cursorVisible="false"
-            android:ems="10"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:hint="Campo no editable"
-            android:inputType="textPersonName"
-            android:text="Pendiente"
-            android:layout_marginHorizontal="10dp"/>
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Síntomas:"
+                    android:textSize="18sp" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:layout_margin="7dp"
-        >
+                <EditText
+                    android:id="@+id/editTextTextSintomas"
+                    android:layout_width="285dp"
+                    android:layout_height="40dp"
 
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:onClick="pickFile"
-            android:text="Buscar Foto"
-            android:layout_marginHorizontal="20dp"/>
+                    android:ems="10"
 
-    </LinearLayout>
+                    android:gravity="start|top"
+                    android:hint="Síntomas"
+                    android:inputType="textMultiLine" />
+            </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:layout_marginHorizontal="7dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
 
-        <ImageView
-            android:id="@+id/imageViewFoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-android:layout_marginLeft="0dp"
-            tools:srcCompat="@tools:sample/avatars" />
+                android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/textViewFoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:layout_gravity="center"
-            android:textSize="18sp"
-            android:visibility="invisible" />
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fecha:"
+                    android:textSize="18sp" />
 
-    </LinearLayout>
+                <EditText
+                    android:id="@+id/editTextTextFecha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:onClick="obtenerFecha" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center">
+            </LinearLayout>
 
-        <Button
-            android:id="@+id/button6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginLeft="0dp"
-            android:onClick="guardarCaso"
-            android:text="Registrar Caso" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Paciente:" />
+
+                <EditText
+                    android:id="@+id/editTextNombrePaciente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Nombre Paciente"
+                    android:inputType="textPersonName" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DNI:" />
+
+                <EditText
+                    android:id="@+id/editTextDniPaciente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="DNI paciente"
+                    android:inputType="number|textPersonName" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_margin="7dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Dir. GPS"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/textViewGps"
+                    android:layout_width="285dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="OBTENER UBICACIÓN"
+                    android:inputType="number"
+                    android:onClick="mostrarInfoDeUbicacion" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_margin="7dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Estado:"
+                    android:textSize="18sp"
+                    tools:layout_editor_absoluteY="370dp" />
+
+                <EditText
+                    android:id="@+id/editTextEstado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="Campo no editable"
+                    android:inputType="textPersonName"
+                    android:text="Pendiente" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="7dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginStart="8dp"
+                    android:onClick="pickFile"
+                    android:text="Buscar Foto" />
+
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="7dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageViewFoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:visibility="invisible"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/textViewFoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="TextView"
+                    android:textSize="18sp"
+                    android:visibility="invisible" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="0dp"
+                    android:onClick="guardarCaso"
+                    android:text="Registrar Caso" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
 
 </LinearLayout>

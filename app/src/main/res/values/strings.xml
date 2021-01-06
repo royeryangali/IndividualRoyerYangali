@@ -3,4 +3,6 @@
     <string name="title_activity_ubicacion_map">Map</string>
     <string name="google_maps_key">AIzaSyA7wqhw9zEqm3yhmsxSpdPKEKrq1nWhVNg</string>
     <string name="menu">Menu</string>
+    <string name="report_app">REPORT-APP</string>
+    <string name="bienvenido_a_la_aplicaci_n_que_te_permitir_gestionar_casos_de_covid_19_y_agendar_tu_cita_de_manera_f_cil_y_desde_esta_plataforma_nica">Bienvenido a la aplicación que te permitirá gestionar casos de Covid-19 y agendar tu cita de manera fácil y desde esta plataforma única.</string>
 </resources>

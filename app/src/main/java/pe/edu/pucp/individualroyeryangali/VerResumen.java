@@ -101,18 +101,18 @@ public class VerResumen extends AppCompatActivity {
                     pieChartView = findViewById(R.id.chart);
 
                     List pieData = new ArrayList<>();
-                    if(extra1!=0.0){
+                    if (extra1 != 0.0) {
                         pieData.add(new SliceValue(extra1, Color.RED).setLabel("Pendientes: " + ejeX));
                     }
-                    if(extra2!=0.0){
+                    if (extra2 != 0.0) {
                         pieData.add(new SliceValue(extra2, Color.GREEN).setLabel("Vacunados: " + ejeY));
                     }
-
+                    int valorSuma = ejeX + ejeY;
                     //pieData.add(new SliceValue(60, Color.MAGENTA).setLabel("Q4: $28"));
 
                     PieChartData pieChartData = new PieChartData(pieData);
                     pieChartData.setHasLabels(true).setValueLabelTextSize(10);
-                    pieChartData.setHasCenterCircle(true).setCenterText1("Total Casos: " + ejeY+ejeX).setCenterText1FontSize(14).setCenterText1Color(Color.parseColor("#0097A7"));
+                    pieChartData.setHasCenterCircle(true).setCenterText1("Total Casos: " + valorSuma).setCenterText1FontSize(14).setCenterText1Color(Color.parseColor("#0097A7"));
                     pieChartView.setPieChartData(pieChartData);
 
                     PieChartView pieChartView2 = findViewById(R.id.chart);
@@ -135,7 +135,7 @@ public class VerResumen extends AppCompatActivity {
                     if (variablecentro != 0.0) {
                         pieData2.add(new SliceValue(variablecentro, Color.BLUE).setLabel("L. Centro: " + axisCentro));
                     }
-                    int a =(axisCentro+axisOeste+axisEste+axisSur+axisNorte);
+                    int a = (axisCentro + axisOeste + axisEste + axisSur + axisNorte);
                     PieChartData pieChartData2 = new PieChartData(pieData2);
                     pieChartData2.setHasLabels(true).setValueLabelTextSize(10);
                     pieChartData2.setHasCenterCircle(true).setCenterText1("Total Casos: " + a).setCenterText1FontSize(14).setCenterText1Color(Color.parseColor("#0097A7"));

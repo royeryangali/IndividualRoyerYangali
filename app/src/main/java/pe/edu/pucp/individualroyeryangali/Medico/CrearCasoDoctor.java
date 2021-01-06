@@ -77,7 +77,7 @@ public class CrearCasoDoctor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_caso_doctor);
-        setTitle("Registrar Caso - Doctor");
+        setTitle("Doctor - ReportApp");
         String[] lista = {"Lima Norte", "Lima Sur", "Lima Este", "Lima Oeste", "Lima Centro"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, lista);
         Spinner spinner = findViewById(R.id.spinnerZona);
@@ -208,44 +208,86 @@ public class CrearCasoDoctor extends AppCompatActivity {
             casoCovid.setEstado("Pendiente");
 
             EditText editTextTextSintomas = findViewById(R.id.editTextTextSintomas);
-            casoCovid.setSintomas(editTextTextSintomas.getText().toString());
-
             EditText editTextNombrePaciente = findViewById(R.id.editTextNombrePaciente);
-            casoCovid.setNombrePaciente(editTextNombrePaciente.getText().toString());
             EditText editTextDniPaciente = findViewById(R.id.editTextDniPaciente);
-            casoCovid.setDniPaciente(Integer.valueOf(editTextDniPaciente.getText().toString()));
             EditText editTextGps = findViewById(R.id.textViewGps);
-            casoCovid.setDireccionGPS(editTextGps.getText().toString());
-
+            EditText editTextFecha = findViewById(R.id.editTextTextFecha);
             final TextView textViewFoto = findViewById(R.id.textViewFoto);
-
-            String mypk = databaseReference.push().getKey();
-            casoCovid.setPkCaso(mypk);
-
-            databaseReference.child("CasosCovid/" + casoCovid.getPkCaso()).setValue(casoCovid)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Log.d("JULIO", "GUARDADO EXITOSO EN TU DATABASE");
-
-                            if (textViewFoto.getVisibility() == View.VISIBLE) {
-                                subirArchivoConPutFile(textViewFoto.getText().toString());
+            if (editTextTextSintomas.getText().toString().trim().isEmpty()) {
+                editTextTextSintomas.setError("Este campo no puede estar vacío.");
+            } else {
+                if (editTextFecha.getText().toString().trim().isEmpty()) {
+                    editTextFecha.setError("Debe seleccionar una fecha.");
+                } else {
+                    if (editTextNombrePaciente.getText().toString().trim().isEmpty()) {
+                        editTextNombrePaciente.setError("Este campo no puede estar vacío.");
+                    } else {
+                        if (editTextGps.getText().toString().trim().isEmpty()) {
+                            editTextGps.setError("Debe prender su GPS.");
+                        } else {
+                            if (editTextDniPaciente.getText().toString().trim().isEmpty()) {
+                                editTextDniPaciente.setError("Debe ingresar un número.");
                             } else {
-                                subirArchivoConPutFile(casoCovid.getNombreFoto());
-                            }
+                                double a = Double.valueOf(editTextDniPaciente.getText().toString().trim());
+                                if (a > 99999999 || a < 9999999) {
+                                    editTextDniPaciente.setError("Este campo debe contener 8 dígitos.");
+                                } else {
 
+                                    if (textViewFoto.getVisibility()==View.INVISIBLE) {
+                                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+                                        alertDialog.setTitle("IMPORTANTE");
+                                        alertDialog.setMessage("Debe examinar una foto para registrar el caso.");
+                                        alertDialog.setPositiveButton("Entendido", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                            }
+                                        });
+                                        alertDialog.show();
+                                    } else {
+                                        casoCovid.setDireccionGPS(editTextGps.getText().toString());
+                                        casoCovid.setDniPaciente(Integer.valueOf(editTextDniPaciente.getText().toString()));
+                                        casoCovid.setNombrePaciente(editTextNombrePaciente.getText().toString());
+                                        casoCovid.setSintomas(editTextTextSintomas.getText().toString());
+
+                                        String mypk = databaseReference.push().getKey();
+                                        casoCovid.setPkCaso(mypk);
+
+                                        databaseReference.child("CasosCovid/" + casoCovid.getPkCaso()).setValue(casoCovid)
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+                                                        Log.d("JULIO", "GUARDADO EXITOSO EN TU DATABASE");
+
+                                                        if (textViewFoto.getVisibility() == View.VISIBLE) {
+                                                            subirArchivoConPutFile(textViewFoto.getText().toString());
+                                                        } else {
+                                                            subirArchivoConPutFile(casoCovid.getNombreFoto());
+                                                        }
+
+                                                    }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        e.printStackTrace();
+                                                    }
+                                                });
+
+
+                                    }
+                                }
+                            }
                         }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            e.printStackTrace();
-                        }
-                    });
+                    }
+                }
+            }
+
+
         } else {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
             alertDialog.setTitle("IMPORTANTE");
-            alertDialog.setMessage("Por favor sigua los siguientes pasos:\n \n 1° Active su GPS \n  2° Presione el botón 'OBTENER UBICACION'\n 3°Haga click en 'RESERVAR' nuevamente");
+            alertDialog.setMessage("Por favor sigua los siguientes pasos:\n \n 1° Active su GPS \n  2° Presione nuevamente en 'OBTENER UBICACION'\n 3°Haga click en 'REGISTRAR' nuevamente");
             alertDialog.setPositiveButton("Entendido", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {

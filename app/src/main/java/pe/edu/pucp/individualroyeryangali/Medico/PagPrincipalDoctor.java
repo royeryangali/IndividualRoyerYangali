@@ -35,22 +35,8 @@ public class PagPrincipalDoctor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pag_principal_doctor);
-        setTitle("Página principal Doctor");
+        setTitle("Doctor - ReportApp");
         listarCasos();
-
-    }
-
-
-    public void crearCita() {
-
-    }
-
-    public void crearCaso(View view) {
-        Intent intent = new Intent(PagPrincipalDoctor.this, CrearCasoDoctor.class);
-        startActivity(intent);
-    }
-
-    public void listarCitas() {
 
     }
 
