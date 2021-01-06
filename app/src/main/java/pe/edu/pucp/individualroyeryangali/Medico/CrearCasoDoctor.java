@@ -65,6 +65,7 @@ import pe.edu.pucp.individualroyeryangali.Entity.CasoCovid;
 import pe.edu.pucp.individualroyeryangali.Entity.Usuario;
 import pe.edu.pucp.individualroyeryangali.MainActivity;
 import pe.edu.pucp.individualroyeryangali.R;
+import pe.edu.pucp.individualroyeryangali.VerResumen;
 
 public class CrearCasoDoctor extends AppCompatActivity {
 
@@ -425,7 +426,8 @@ public class CrearCasoDoctor extends AppCompatActivity {
                                 startActivity(intent);
                                 return true;
                             case R.id.verResumenDoctor:
-
+                                Intent intent1 = new Intent(CrearCasoDoctor.this, VerResumen.class);
+                                startActivity(intent1);
                                 return true;
                             case R.id.crearCasoDoctor:
                                 Intent intent2 = new Intent(CrearCasoDoctor.this, CrearCasoDoctor.class);

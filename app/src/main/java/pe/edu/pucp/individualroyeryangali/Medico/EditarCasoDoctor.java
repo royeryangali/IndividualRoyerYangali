@@ -51,6 +51,7 @@ import java.io.OutputStream;
 import pe.edu.pucp.individualroyeryangali.Entity.CasoCovid;
 import pe.edu.pucp.individualroyeryangali.MainActivity;
 import pe.edu.pucp.individualroyeryangali.R;
+import pe.edu.pucp.individualroyeryangali.VerResumen;
 
 public class EditarCasoDoctor extends AppCompatActivity {
     CasoCovid casoCovid = new CasoCovid();
@@ -75,6 +76,12 @@ public class EditarCasoDoctor extends AppCompatActivity {
         editTextInluyeEdit.setText(casoCovid.getFechaRegistro());
         EditText editTextStockEdit = findViewById(R.id.editTextDireccionGpsEdit);
         editTextStockEdit.setText(String.valueOf(casoCovid.getDireccionGPS()));
+                EditText editTextPaciente = findViewById(R.id.editTexPacienteEdit);
+        editTextPaciente.setText(casoCovid.getNombrePaciente());
+        EditText editTextDniPaciente = findViewById(R.id.editTexDniPacienteEdit);
+        editTextDniPaciente.setText(casoCovid.getDniPaciente());
+
+
     }
     public void limpiarImagen(View view){
 
@@ -306,7 +313,8 @@ public class EditarCasoDoctor extends AppCompatActivity {
                                 startActivity(intent);
                                 return true;
                             case R.id.verResumenDoctor:
-
+                                Intent intent1 = new Intent(EditarCasoDoctor.this, VerResumen.class);
+                                startActivity(intent1);
                                 return true;
                             case R.id.crearCasoDoctor:
                                 Intent intent2 = new Intent(EditarCasoDoctor.this, CrearCasoDoctor.class);

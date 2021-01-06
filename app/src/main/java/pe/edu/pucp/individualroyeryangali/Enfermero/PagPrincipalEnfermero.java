@@ -28,6 +28,7 @@ import pe.edu.pucp.individualroyeryangali.MainActivity;
 import pe.edu.pucp.individualroyeryangali.Medico.PagPrincipalDoctor;
 import pe.edu.pucp.individualroyeryangali.R;
 import pe.edu.pucp.individualroyeryangali.RecyclerAdapters.CasosCovidAdapterEnfermero;
+import pe.edu.pucp.individualroyeryangali.VerResumen;
 
 public class PagPrincipalEnfermero extends AppCompatActivity {
 
@@ -110,7 +111,8 @@ public class PagPrincipalEnfermero extends AppCompatActivity {
                             case R.id.verListaCasosEnfermero:
                                 return true;
                             case R.id.verResumenEnfermero:
-
+                                Intent intent = new Intent(PagPrincipalEnfermero.this, VerResumen.class);
+                                startActivity(intent);
                                 return true;
                             case R.id.cerrarSesionEnfermero:
                                 logOut();

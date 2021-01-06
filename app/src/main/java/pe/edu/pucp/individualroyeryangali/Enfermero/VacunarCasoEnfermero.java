@@ -65,6 +65,7 @@ import pe.edu.pucp.individualroyeryangali.Medico.CrearCasoDoctor;
 import pe.edu.pucp.individualroyeryangali.Medico.PagPrincipalDoctor;
 import pe.edu.pucp.individualroyeryangali.Medico.UbicacionMapActivity;
 import pe.edu.pucp.individualroyeryangali.R;
+import pe.edu.pucp.individualroyeryangali.VerResumen;
 
 public class VacunarCasoEnfermero extends AppCompatActivity {
     CasoCovid casoCovidEnfermero = new CasoCovid();
@@ -215,7 +216,8 @@ public class VacunarCasoEnfermero extends AppCompatActivity {
                                 finish();
                                 return true;
                             case R.id.verResumenEnfermero:
-
+                                Intent intent1 = new Intent(VacunarCasoEnfermero.this, VerResumen.class);
+                                startActivity(intent1);
                                 return true;
                             case R.id.cerrarSesionEnfermero:
                                 logOut();

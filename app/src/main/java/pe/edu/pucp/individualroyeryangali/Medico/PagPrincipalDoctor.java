@@ -27,6 +27,7 @@ import pe.edu.pucp.individualroyeryangali.Entity.CasoCovid;
 import pe.edu.pucp.individualroyeryangali.MainActivity;
 import pe.edu.pucp.individualroyeryangali.R;
 import pe.edu.pucp.individualroyeryangali.RecyclerAdapters.CasosCovidAdapterDoctor;
+import pe.edu.pucp.individualroyeryangali.VerResumen;
 
 public class PagPrincipalDoctor extends AppCompatActivity {
 
@@ -119,7 +120,8 @@ public class PagPrincipalDoctor extends AppCompatActivity {
                             case R.id.verListaCasosDoctor:
                                 return true;
                             case R.id.verResumenDoctor:
-
+                                Intent intent1 = new Intent(PagPrincipalDoctor.this, VerResumen.class);
+                                startActivity(intent1);
                                 return true;
                             case R.id.crearCasoDoctor:
                                 Intent intent2 = new Intent(PagPrincipalDoctor.this, CrearCasoDoctor.class);
